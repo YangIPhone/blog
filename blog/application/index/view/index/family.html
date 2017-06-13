@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+<title>莫忘个人博客</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="{$Think.const.CSS_URL}bootstrap.min.css" rel="stylesheet">
+<link href="{$Think.const.CSS_URL}base.css" rel="stylesheet">
+<link href="{$Think.const.CSS_URL}index.css" rel="stylesheet">
+<script type="text/javascript" src="{$Think.const.JS_URL}jquery.min.js"></script>
+<script type="text/javascript" src="{$Think.const.JS_URL}sliders.js"></script>
+</head>
+<body>
+<header>
+  <div class="logo f_l"> <a href="/"><img src="{$Think.const.IMG_URL}logo.png"></a> </div>
+  <nav id="topnav" class="f_r">
+    <ul>
+      <a href="{:url('/index')}">首页</a> 
+      <a href="{:url('/aboutme')}" >关于我</a>
+      <a href="{:url('/article')}" >文章</a> 
+      <a href="{:url('/photo')}" >相册</a> 
+      <a href="{:url('/leavemessage')}">留言</a>
+      <a href="{:url('/showmessage')}">留言板</a>
+    </ul>
+    <script src="{$Think.const.JS_URL}nav.js"></script> 
+  </nav>
+</header>
+  <div class="topnews">
+      <h2>My Family</h2>
+      <div class="blogs">
+      {volist name="family" id="v"}
+          <figure >
+          <img style="width: 300px;height: 300px;" src="{$Think.const.PHOTO}{$v.Photo}"></figure>
+       {/volist} 
+      </div>
+       
+      <div style="position:relative;top: 0px;">
+      {$family->render()}      
+      </div> 
+      </div>
+</body>
+</html>
