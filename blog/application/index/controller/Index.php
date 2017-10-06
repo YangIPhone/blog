@@ -7,6 +7,12 @@ use app\index\model\Article;
 class Index extends  Controller
 {
 	
+function __construct()
+    {   
+         parent::__construct();//构造函数覆盖了父类构造函数，调用一次父类构造函数
+        header("Access-Control-Allow-Origin: *");        
+    }
+
     public function index()
     {   //推荐文章的分页       
     $article=model('article');

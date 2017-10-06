@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"/var/www/html/blog/public/../application/admin/view/index/index.html";i:1502627880;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,11 +40,11 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>{$Request.session.username}</span> </a>
+                            <a href="javascript:;">欢迎你, <span><?php echo \think\Request::instance()->session('username'); ?></span> </a>
                         </li>                                                
                         <!-- 退出 -->
                         <li class="am-text-sm">
-                            <a href="{:url('quit')}">
+                            <a href="<?php echo url('quit'); ?>">
                                 <span class="am-icon-sign-out"></span> 退出
                             </a>
                         </li>
@@ -76,7 +77,7 @@
                     </div>
                     <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              {$Request.session.username}
+              <?php echo \think\Request::instance()->session('username'); ?>
           </span> 
                 </div>
             </div>
@@ -89,23 +90,23 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="{:url('/showmessage')}">
+                    <a href="<?php echo url('/showmessage'); ?>">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 留言列表                    </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="{:url('/addphoto')}">
+                    <a href="<?php echo url('/addphoto'); ?>">
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 上传照片
                     </a>
                 </li>
 
                 <li class="sidebar-nav-link">
-                    <a href="{:url('/writes')}">
+                    <a href="<?php echo url('/writes'); ?>">
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 发表文章
                     </a>
                 </li>
 
                 <li class="sidebar-nav-link">
-                    <a href="{:url('/sendemail')}">
+                    <a href="<?php echo url('/sendemail'); ?>">
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 发送邮件
                     </a>
                 </li>
@@ -118,20 +119,20 @@
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="{:url('/articlelist')}">
+                            <a href="<?php echo url('/articlelist'); ?>">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文字列表
                             </a>
                         </li>
 
                         <li class="sidebar-nav-link">
-                            <a href="{:url('/articlelistimg')}"">
+                            <a href="<?php echo url('/articlelistimg'); ?>"">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="{:url('/logining')}">
+                    <a href="<?php echo url('/logining'); ?>">
                         <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
                     </a>
                 </li>
@@ -155,7 +156,7 @@
                                 </div>
                                 <div class="am-fr am-cf">
                                     <div class="widget-statistic-value">
-                                        {$num[0]}条
+                                        <?php echo $num[0]; ?>条
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +170,7 @@
                             </div>
                             <div class="widget-statistic-body">
                                 <div class="widget-statistic-value">
-                                    {$num[1]}张
+                                    <?php echo $num[1]; ?>张
                                 </div>
                                 
                                 <span class="widget-statistic-icon am-icon-credit-card-alt"></span>
@@ -183,7 +184,7 @@
                             </div>
                             <div class="widget-statistic-body">
                                 <div class="widget-statistic-value">
-                                    {$num[2]}篇
+                                    <?php echo $num[2]; ?>篇
                                 </div>
                                 
                                 <span class="widget-statistic-icon am-icon-support"></span>
@@ -195,17 +196,17 @@
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 widget-margin-bottom-lg ">
                         <div class="tpl-user-card am-text-center widget-body-lg">
                             <div class="tpl-user-card-title">
-                                {$Request.session.username}
+                                <?php echo \think\Request::instance()->session('username'); ?>
                             </div>
                             <div class="achievement-subheading">
                                 管理员
                             </div>
                             <img class="achievement-image" src="__PUBLICIMG__user07.png" alt="">
                             <div class="achievement-description">
-                                {$Request.session.username}在
+                                <?php echo \think\Request::instance()->session('username'); ?>在
                                 <strong>本周内</strong>发表了
-                                <strong>{$num[2]}</strong>篇文章<br/>上传了
-                                <strong>{$num[1]}</strong>张照片
+                                <strong><?php echo $num[2]; ?></strong>篇文章<br/>上传了
+                                <strong><?php echo $num[1]; ?></strong>张照片
                             </div>
                         </div>
                     </div>
@@ -226,27 +227,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        	{volist name="new" id="v"}
+                                        	<?php if(is_array($new) || $new instanceof \think\Collection || $new instanceof \think\Paginator): $i = 0; $__LIST__ = $new;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
                                             <tr class="even gradeC">
-                                                <td>{$v.Title}</td>
-                                                <td>{$v.Writer}</td>
-                                                <td>{$v.Time}</td>
+                                                <td><?php echo $v['Title']; ?></td>
+                                                <td><?php echo $v['Writer']; ?></td>
+                                                <td><?php echo $v['Time']; ?></td>
                                                 <td>
                                                     <div class="tpl-table-black-operation">
-                                                        <a href="{:url('/update')}?ID={$v.ID}">
+                                                        <a href="<?php echo url('/update'); ?>?ID=<?php echo $v['ID']; ?>">
                                                             <i class="am-icon-pencil"></i> 编辑
                                                         </a>
-                                                        <a href="{:url('/delete')}?ID={$v.ID}" class="tpl-table-black-operation-del">
+                                                        <a href="<?php echo url('/delete'); ?>?ID=<?php echo $v['ID']; ?>" class="tpl-table-black-operation-del">
                                                             <i class="am-icon-trash"></i> 删除
                                                         </a>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            {/volist}                                            
+                                            <?php endforeach; endif; else: echo "" ;endif; ?>                                            
                                             <!-- more data -->
                                         </tbody>                                       
                                     </table>
-                                    {$new->render()}
+                                    <?php echo $new->render(); ?>
                                 </div>
                             </div>
                         </div>

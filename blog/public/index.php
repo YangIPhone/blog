@@ -13,9 +13,10 @@
 
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
-define('CSS_URL','../static/css/');
-define('IMG_URL','../static/img/');
+define('CSS_URL','../static/index/css/');
+define('IMG_URL','../static/index/img/');
+define('ARTIMG_URL','../artimg/');
 define('PHOTO','../upfile/');
-define('JS_URL','../static/js/');
+define('JS_URL','../static/index/js/');
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';

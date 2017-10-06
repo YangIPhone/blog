@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"/var/www/html/blog/public/../application/admin/view/index/write.html";i:1502627972;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,11 +40,11 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>{$Request.session.username}</span> </a>
+                            <a href="javascript:;">欢迎你, <span><?php echo \think\Request::instance()->session('username'); ?></span> </a>
                         </li>                                                
                         <!-- 退出 -->
                         <li class="am-text-sm">
-                            <a href="{:url('quit')}">
+                            <a href="<?php echo url('quit'); ?>">
                                 <span class="am-icon-sign-out"></span> 退出
                             </a>
                         </li>
@@ -76,7 +77,7 @@
                     </div>
                     <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              {$Request.session.username}
+              <?php echo \think\Request::instance()->session('username'); ?>
           </span> 
                 </div>
             </div>
@@ -89,23 +90,23 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="{:url('/showmessage')}">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i>留言列表                    </a>
+                    <a href="<?php echo url('/showmessage'); ?>">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 留言列表                    </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="{:url('/addphoto')}">
+                    <a href="<?php echo url('/addphoto'); ?>">
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 上传照片
                     </a>
                 </li>
 
                 <li class="sidebar-nav-link">
-                    <a href="{:url('/writes')}">
+                    <a href="<?php echo url('/writes'); ?>">
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 发表文章
                     </a>
                 </li>
-  
-                <li class="sidebar-nav-link">
-                    <a href="{:url('/sendemail')}">
+
+                 <li class="sidebar-nav-link">
+                    <a href="<?php echo url('/sendemail'); ?>">
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 发送邮件
                     </a>
                 </li>
@@ -118,20 +119,20 @@
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
                         <li class="sidebar-nav-link">
-                            <a href="{:url('/articlelist')}">
+                            <a href="<?php echo url('/articlelist'); ?>">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文字列表
                             </a>
                         </li>
 
                         <li class="sidebar-nav-link">
-                            <a href="{:url('/articlelistimg')}"">
+                            <a href="<?php echo url('/articlelistimg'); ?>"">
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="{:url('/logining')}">
+                    <a href="<?php echo url('/logining'); ?>">
                         <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
                     </a>
                 </li>
@@ -154,27 +155,57 @@
                             </div>
                             <div class="widget-body am-fr">
 
-                                <form class="am-form tpl-form-line-form" enctype="multipart/form-data" method="post" action="{:url('upphoto')}">
-                                 <div class="am-form-group">                              
+                                <form class="am-form tpl-form-line-form" enctype="multipart/form-data" method="post" action="<?php echo url('addarticle'); ?>">
+                                    <div class="am-form-group">
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" name="Title" id="user-name" placeholder="请输入标题文字">
+                                            <small>请填写标题文字10-20字左右。</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <label for="user-email" class="am-u-sm-3 am-form-label">发布时间 <span class="tpl-form-line-small-title">Time</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="am-form-field tpl-form-no-bg" name="Time" value="<?php echo date('Y-m-d H:i:s'); ?>" data-am-datepicker="" readonly="">
+                                        </div>
+                                    </div>                        
+                                    <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label">作者<span class="tpl-form-line-small-title">writer</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" name="Writer" placeholder="输入作者">
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">封面图 <span class="tpl-form-line-small-title">Images</span></label>
                                         <div class="am-u-sm-9">
                                             <div class="am-form-group am-form-file">                          
                                                 <button type="button" class="am-btn am-btn-danger am-btn-sm">
-                                                <i class="am-icon-cloud-upload"></i> 选择上传图片</button>
-                                                <input id="doc-form-file" type="file" name="File" , onchange="c()">
-                                                </div> 
+                                                <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
+                                                <input id="doc-form-file" type="file" name="file", onchange="c()">
                                                 <div style="margin-top:15px">
                                                 <img src="" id='show' style="width: 200px;height: 200px;display:none">
-                                                </div>                                           
-                                        <span>请选择相册</span>
-                                        <select name="Type" data-am-selected="{btnSize: 'sm'}">
-                                         <option value="family">family</option>
-                                         <option value="game">game</option>
-                                         <option value="me">me</option>
-                                         </select>
-                                         <input type="hidden" name="Time" value="{:date('Y-m-d H:i:s')}"/>
-                                           <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">上传</button>                                                                       
+                                                </div>
+                                            </div>
+                                        <div style="width:200px;height:200px;border:1px solid #ccc;display:none;" id="yl">
+                                        <img src="" style="width:100%;height:100%;">
                                         </div>
-                                    </div>    
+                                        </div>
+                                    </div>  
+                                    
+                                    <div class="am-form-group">
+                                        <label for="user-intro" class="am-u-sm-3 am-form-label">文章内容</label>
+                                        <div class="am-u-sm-9">
+                                            <textarea id="demo" class="" rows="10" id="user-intro"  name="Content" ></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <div class="am-u-sm-9 am-u-sm-push-3">
+                                            <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -188,7 +219,13 @@
     <script src="__PUBLICJS__amazeui.datatables.min.js"></script>
     <script src="__PUBLICJS__dataTables.responsive.min.js"></script>
     <script src="__PUBLICJS__app.js"></script>
-   <script type="text/javascript">
+<script type="text/javascript">
+layui.use('layedit', function(){
+var layedit = layui.layedit;
+var abc=layedit.build('demo',{tool: ['strong','italic','underline','del','link','unlink','left', 'center', 'right','face',]});//建立编辑器
+});
+</script>
+<script type="text/javascript">
 function c () {
     var img= document.getElementById('show');
     img.style.display="block";

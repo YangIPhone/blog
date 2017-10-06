@@ -1,8 +1,9 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:75:"/var/www/html/blog/public/../application/index/view/leavemessage/index.html";i:1500140081;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title>留言板</title>
-<link rel="stylesheet" type="" href="{$Think.const.CSS_URL}style.css">
+<link rel="stylesheet" type="" href="<?php echo CSS_URL; ?>style.css">
 <link rel="stylesheet" href="/layui/css/layui.css">
 		<script src="/layui/layui.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +21,7 @@
 <body>
 	<h1>留下你的足迹</h1>
 	<div class="login-01">
-			<form id="textform" action="{:url('message')}" method="post">
+			<form id="textform" action="<?php echo url('message'); ?>" method="post">
 				<ul>
 				<li class="first">
 					<p class=" icon user"></p></a><input type="text" class="text" name="Name" value="Name" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Name';}" >
@@ -30,18 +31,18 @@
 					<p class=" icon email"></p><input type="text" class="text" name="Email" value="Email" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Email';}" >
 					<div class="clear"></div>
 				</li>
-					<input type="hidden" name="Time" value="{:date('Y-m-d H:i:s')}" />
+					<input type="hidden" name="Time" value="<?php echo date('Y-m-d H:i:s'); ?>" />
 				<li class="second">
 				<p class=" icon msg"></p></a><textarea id="demo" name="Message" value="Message" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Comments';}"></textarea>
 				<div class="clear"></div>
 				</li>
 			</ul>
 			<input type="submit" onClick="myFunction()" value="Submit" >
-			<div class="clear"><a style="text-decoration:none;" href="{:url('/index')}"><h2>返回首页</h2></a></div>
+			<div class="clear"><a style="text-decoration:none;" href="<?php echo url('/index'); ?>"><h2>返回首页</h2></a></div>
 		</form>
 </div>
 <footer  style="width:100%; position:fixed;bottom:0px;text-align:center;">
-<a id="togbook" href="http://www.miibeian.gov.cn/"><img src="{$Think.const.IMG_URL}icp.jpg" style="width:18px;height:18px;">渝ICP备17008739号-1</a>
+<a id="togbook" href="http://www.miibeian.gov.cn/"><img src="<?php echo IMG_URL; ?>icp.jpg" style="width:18px;height:18px;">渝ICP备17008739号-1</a>
   <p class="ft-copyright">莫忘个人博客 Ymowang Blog</p>
 </footer>
 	<script type="text/javascript">

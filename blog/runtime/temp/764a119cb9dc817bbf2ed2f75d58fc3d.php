@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"/var/www/html/blog/public/../application/index/view/index/index.html";i:1500140806;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -5,28 +6,28 @@
 <title>莫忘个人博客</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="{$Think.const.CSS_URL}bootstrap.min.css" rel="stylesheet">
-<link href="{$Think.const.CSS_URL}base.css" rel="stylesheet">
-<link href="{$Think.const.CSS_URL}index.css" rel="stylesheet">
-<script type="text/javascript" src="{$Think.const.JS_URL}jquery.min.js"></script>
-<script type="text/javascript" src="{$Think.const.JS_URL}sliders.js"></script>
+<link href="<?php echo CSS_URL; ?>bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo CSS_URL; ?>base.css" rel="stylesheet">
+<link href="<?php echo CSS_URL; ?>index.css" rel="stylesheet">
+<script type="text/javascript" src="<?php echo JS_URL; ?>jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo JS_URL; ?>sliders.js"></script>
 <!--[if lt IE 9]>
-<script src="{$Think.const.JS_URL}modernizr.js"></script>
+<script src="<?php echo JS_URL; ?>modernizr.js"></script>
 <![endif]-->
 </head>
 <body>
 <header>
-  <div class="logo f_l"> <a href="/"><img src="{$Think.const.IMG_URL}logo.png"></a> </div>
+  <div class="logo f_l"> <a href="/"><img src="<?php echo IMG_URL; ?>logo.png"></a> </div>
   <nav id="topnav" class="f_r">
     <ul>
-      <a href="{:url('/index')}">首页</a> 
-      <a href="{:url('/aboutme')}">关于我</a>
-      <a href="{:url('/article')}">文章</a> 
-      <a href="{:url('/photo')}" >相册</a> 
-      <a href="{:url('/leavemessage')}">留言</a>
-      <a href="{:url('/showmessage')}">留言板</a>
+      <a href="<?php echo url('/index'); ?>">首页</a> 
+      <a href="<?php echo url('/aboutme'); ?>">关于我</a>
+      <a href="<?php echo url('/article'); ?>">文章</a> 
+      <a href="<?php echo url('/photo'); ?>" >相册</a> 
+      <a href="<?php echo url('/leavemessage'); ?>">留言</a>
+      <a href="<?php echo url('/showmessage'); ?>">留言板</a>
     </ul>
-    <script src="{$Think.const.JS_URL}nav.js"></script> 
+    <script src="<?php echo JS_URL; ?>nav.js"></script> 
   </nav>
 </header>
 <article>
@@ -35,15 +36,15 @@
       <div id="slide-holder">
         <div id="slide-runner">
         <a href="/" target="_blank">
-        <img id="slide-img-1" src="{$Think.const.IMG_URL}a1.jpg"  alt="" />
+        <img id="slide-img-1" src="<?php echo IMG_URL; ?>a1.jpg"  alt="" />
         </a> 
         <a href="/" target="_blank">
-        <img id="slide-img-2" src="{$Think.const.IMG_URL}a2.jpg"  alt="" />
+        <img id="slide-img-2" src="<?php echo IMG_URL; ?>a2.jpg"  alt="" />
         </a> 
         <a href="/" target="_blank">
-        <img id="slide-img-3" src="{$Think.const.IMG_URL}a3.jpg"  alt="" />
+        <img id="slide-img-3" src="<?php echo IMG_URL; ?>a3.jpg"  alt="" />
         </a> <a href="/" target="_blank">
-        <img id="slide-img-4" src="{$Think.const.IMG_URL}a4.jpg"  alt="" />
+        <img id="slide-img-4" src="<?php echo IMG_URL; ?>a4.jpg"  alt="" />
         </a>
           <div id="slide-controls">
             <p id="slide-client" class="text"><strong></strong><span></span></p>
@@ -84,15 +85,15 @@
     <!-- banner代码 结束 -->
     <div class="topnews">
       <h2><b>文章</b>推荐</h2>
-      {volist name="new" id="v"}
+      <?php if(is_array($new) || $new instanceof \think\Collection || $new instanceof \think\Paginator): $i = 0; $__LIST__ = $new;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
       <div class="blogs">
-        <figure><img src="{$Think.const.ARTIMG_URL}{$v.Img}"></figure>
+        <figure><img src="<?php echo ARTIMG_URL; ?><?php echo $v['Img']; ?>"></figure>
         <ul>
-          <h3><a href="{:url('/Clicknum')}?ID={$v.ID}">{$v.Title}</a></h3>
-          <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span class="dtime f_l">{$v.Time}</span><span class="viewnum f_r">浏览（<a href="{:url('/Clicknum')}?ID={$v.ID}">{$v.Clicknum}</a>）</span></p>
+          <h3><a href="<?php echo url('/Clicknum'); ?>?ID=<?php echo $v['ID']; ?>"><?php echo $v['Title']; ?></a></h3>
+          <p class="autor"><span class="lm f_l"><a href="/">个人博客</a></span><span class="dtime f_l"><?php echo $v['Time']; ?></span><span class="viewnum f_r">浏览（<a href="<?php echo url('/Clicknum'); ?>?ID=<?php echo $v['ID']; ?>"><?php echo $v['Clicknum']; ?></a>）</span></p>
         </ul>
       </div>
-      {/volist}          
+      <?php endforeach; endif; else: echo "" ;endif; ?>          
     </div>
   </div>
   <div class="r_box f_r">
@@ -116,7 +117,7 @@
       </div>
     </div>
     <!--tit01 end-->
-    <div class="ad300x100"> <img src="{$Think.const.IMG_URL}ad300x100.jpg"> </div>
+    <div class="ad300x100"> <img src="<?php echo IMG_URL; ?>ad300x100.jpg"> </div>
     <div class="moreSelect" id="lp_right_select"> 
       <script>
 window.onload = function ()
@@ -147,23 +148,23 @@ window.onload = function ()
       <div class="ms-main" id="ms-main">
         <div style="display: block;" class="bd bd-news" >
           <ul>
-          {volist name="click" id="t"}
-            <li><a href="{:url('/Clicknum')}?ID={$t.ID}" target="_blank">{$t.Title}</a></li>
-            {/volist}           
+          <?php if(is_array($click) || $click instanceof \think\Collection || $click instanceof \think\Paginator): $i = 0; $__LIST__ = $click;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$t): $mod = ($i % 2 );++$i;?>
+            <li><a href="<?php echo url('/Clicknum'); ?>?ID=<?php echo $t['ID']; ?>" target="_blank"><?php echo $t['Title']; ?></a></li>
+            <?php endforeach; endif; else: echo "" ;endif; ?>           
           </ul>
         </div>
         <div  class="bd bd-news">
           <ul>
-            {volist name="new" id="t"}
-            <li><a href="{:url('/Clicknum')}?ID={$t.ID}" target="_blank">{$t.Title}</a></li>
-            {/volist}
+            <?php if(is_array($new) || $new instanceof \think\Collection || $new instanceof \think\Paginator): $i = 0; $__LIST__ = $new;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$t): $mod = ($i % 2 );++$i;?>
+            <li><a href="<?php echo url('/Clicknum'); ?>?ID=<?php echo $t['ID']; ?>" target="_blank"><?php echo $t['Title']; ?></a></li>
+            <?php endforeach; endif; else: echo "" ;endif; ?>
           </ul>
         </div>
         <div class="bd bd-news">
           <ul>
-           {volist name="new" id="t"}
-            <li><a href="{:url('/Clicknum')}?ID={$t.ID}" target="_blank">{$t.Title}</a></li>
-            {/volist}
+           <?php if(is_array($new) || $new instanceof \think\Collection || $new instanceof \think\Paginator): $i = 0; $__LIST__ = $new;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$t): $mod = ($i % 2 );++$i;?>
+            <li><a href="<?php echo url('/Clicknum'); ?>?ID=<?php echo $t['ID']; ?>" target="_blank"><?php echo $t['Title']; ?></a></li>
+            <?php endforeach; endif; else: echo "" ;endif; ?>
           </ul>
         </div>
       </div>
@@ -174,7 +175,7 @@ window.onload = function ()
     <div class="cloud">
       <h3>标签云</h3>
       <ul>
-     <li><a href="{:url('/admin')}" target="_blank" >个人博客</a></li>
+     <li><a href="<?php echo url('/admin'); ?>" target="_blank" >个人博客</a></li>
         <li><a href="http://www.php.net/"  target="_blank" >PHP</a></li>
         <li><a href="http://www.thinkphp.cn/"  target="_blank" >ThinkPHP</a></li>
         <li><a href="http://www.workerman.net/"  target="_blank" >workerman</a></li>
@@ -189,14 +190,14 @@ window.onload = function ()
     <div class="tuwen">
       <h3>图文推荐</h3>
       <ul>
-        {volist name="new" id="v"}
-        <li><a href="/"><img src="{$Think.const.ARTIMG_URL}{$v.Img}"><b>{$v.Title}</b></a>
-          <p><span class="tulanmu"></span><span class="tutime">{$v.Time}</span></p>
+        <?php if(is_array($new) || $new instanceof \think\Collection || $new instanceof \think\Paginator): $i = 0; $__LIST__ = $new;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
+        <li><a href="/"><img src="<?php echo ARTIMG_URL; ?><?php echo $v['Img']; ?>"><b><?php echo $v['Title']; ?></b></a>
+          <p><span class="tulanmu"></span><span class="tutime"><?php echo $v['Time']; ?></span></p>
         </li>
-        {/volist}
+        <?php endforeach; endif; else: echo "" ;endif; ?>
       </ul>
     </div>
-    <div class="ad"> <img src="{$Think.const.IMG_URL}03.jpg"> </div>
+    <div class="ad"> <img src="<?php echo IMG_URL; ?>03.jpg"> </div>
   </div>
   <!--r_box end --> 
 </article>

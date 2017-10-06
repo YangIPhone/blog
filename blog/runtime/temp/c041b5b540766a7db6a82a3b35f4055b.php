@@ -1,37 +1,38 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"/var/www/html/blog/public/../application/index/view/index/lookarticle.html";i:1502627750;}*/ ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>{$article.Title}</title>
+		<title><?php echo $article['Title']; ?></title>
 		<meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="{$Think.const.CSS_URL}bootstrap.min.css" rel="stylesheet">
-<link href="{$Think.const.CSS_URL}base.css" rel="stylesheet">
-<link href="{$Think.const.CSS_URL}index.css" rel="stylesheet">
-<script type="text/javascript" src="{$Think.const.JS_URL}jquery.min.js"></script>
-<script type="text/javascript" src="{$Think.const.JS_URL}sliders.js"></script>
+<link href="<?php echo CSS_URL; ?>bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo CSS_URL; ?>base.css" rel="stylesheet">
+<link href="<?php echo CSS_URL; ?>index.css" rel="stylesheet">
+<script type="text/javascript" src="<?php echo JS_URL; ?>jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo JS_URL; ?>sliders.js"></script>
 	</head>
 	<header>
-  <div class="logo f_l"> <a href="/"><img src="{$Think.const.IMG_URL}logo.png"></a> </div>
+  <div class="logo f_l"> <a href="/"><img src="<?php echo IMG_URL; ?>logo.png"></a> </div>
   <nav id="topnav" class="f_r">
     <ul>
-      <a href="{:url('/article')}">文章</a> 
-      <a href="{:url('/aboutme')}" >关于我</a>
-      <a href="{:url('/index')}" >首页</a> 
-      <a href="{:url('/photo')}" >相册</a> 
-      <a href="{:url('/leavemessage')}">留言</a>
-      <a href="{:url('/showmessage')}">留言板</a>
+      <a href="<?php echo url('/article'); ?>">文章</a> 
+      <a href="<?php echo url('/aboutme'); ?>" >关于我</a>
+      <a href="<?php echo url('/index'); ?>" >首页</a> 
+      <a href="<?php echo url('/photo'); ?>" >相册</a> 
+      <a href="<?php echo url('/leavemessage'); ?>">留言</a>
+      <a href="<?php echo url('/showmessage'); ?>">留言板</a>
     </ul>
-    <script src="{$Think.const.JS_URL}nav.js"></script> 
+    <script src="<?php echo JS_URL; ?>nav.js"></script> 
   </nav>
 </header>
   <div class="topnews">
      
-      <h2>{$article.Title}</h2>     
+      <h2><?php echo $article['Title']; ?></h2>     
       <div class="blogs">
-        <figure><img src="{$Think.const.ARTIMG_URL}{$article.Img}"></figure>
+        <figure><img src="<?php echo ARTIMG_URL; ?><?php echo $article['Img']; ?>"></figure>
         <ul>
-        	{$article.Content}
+        	<?php echo $article['Content']; ?>
         </ul>
         
       </div>
@@ -39,8 +40,8 @@
       	<span class="lm f_l">
       		<a href="/">个人博客</a>
       	</span>
-      	<span class="dtime f_l">{$article.Time}</span>
-      	<span class="viewnum f_r">浏览（<a href="{:url('/Clicknum')}?ID={$article.ID}">{$article.Clicknum}</a>）
+      	<span class="dtime f_l"><?php echo $article['Time']; ?></span>
+      	<span class="viewnum f_r">浏览（<a href="<?php echo url('/Clicknum'); ?>?ID=<?php echo $article['ID']; ?>"><?php echo $article['Clicknum']; ?></a>）
         <!-- UY BEGIN -->
 <div id="uyan_frame"></div>
 <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js"></script>

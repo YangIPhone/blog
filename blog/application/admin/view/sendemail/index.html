@@ -14,7 +14,8 @@
     <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <script src="__PUBLICJS__echarts.min.js"></script>
-    <link href="__PUBLICCSS__bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+<script src="/layui/layui.js"></script>
     <link rel="stylesheet" href="__PUBLICCSS__amazeui.min.css" />
     <link rel="stylesheet" href="__PUBLICCSS__amazeui.datatables.min.css" />
     <link rel="stylesheet" href="__PUBLICCSS__app.css">
@@ -33,7 +34,6 @@
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">
-             
                 <!-- 其它功能-->
                 <div class="am-fr tpl-header-navbar">
                     <ul>
@@ -104,7 +104,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-nav-link">
+                 <li class="sidebar-nav-link">
                     <a href="{:url('/sendemail')}">
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 发送邮件
                     </a>
@@ -139,120 +139,70 @@
             </ul>
         </div>
 
- 
         <!-- 内容区域 -->
-        <div class="tpl-content-wrapper">           
+        <div class="tpl-content-wrapper">
+
+            <div class="container-fluid am-cf">
+
 
             <div class="row-content am-cf">
-                <div class="row  am-cf">
-                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-head am-cf">
-                                <div class="widget-title am-fl">本周新增留言</div>
+                                <div class="widget-title am-fl">线条表单</div>
                             </div>
                             <div class="widget-body am-fr">
-                                <div class="am-fl">
-                                </div>
-                                <div class="am-fr am-cf">
-                                    <div class="widget-statistic-value">
-                                        {$num[0]}条
+
+                                <form class="am-form tpl-form-line-form" enctype="multipart/form-data" method="post" action="{:url('/send')}">
+                                    <div class="am-form-group">
+                                        <label for="user-name" class="am-u-sm-3 am-form-label">邮件主题 <span class="tpl-form-line-small-title">Title</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" name="Title" id="user-name" placeholder="请输入邮件主题">
+                                            <small>请填写邮件主题10-20字左右。</small>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                      
+                                    <div class="am-form-group">
+                                        <label class="am-u-sm-3 am-form-label">收件人<span class="tpl-form-line-small-title">writer</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" name="sjr" placeholder="请输入收件人">
+                                        </div>
+                                    </div>
 
-                    </div>
-                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
-                        <div class="widget widget-primary am-cf">
-                            <div class="widget-statistic-header">
-                                本周上传照片
-                            </div>
-                            <div class="widget-statistic-body">
-                                <div class="widget-statistic-value">
-                                    {$num[1]}张
-                                </div>
-                                
-                                <span class="widget-statistic-icon am-icon-credit-card-alt"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
-                        <div class="widget widget-purple am-cf">
-                            <div class="widget-statistic-header">
-                                本周发表文章
-                            </div>
-                            <div class="widget-statistic-body">
-                                <div class="widget-statistic-value">
-                                    {$num[2]}篇
-                                </div>
-                                
-                                <span class="widget-statistic-icon am-icon-support"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>              
-                <div class="row am-cf">
-                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 widget-margin-bottom-lg ">
-                        <div class="tpl-user-card am-text-center widget-body-lg">
-                            <div class="tpl-user-card-title">
-                                {$Request.session.username}
-                            </div>
-                            <div class="achievement-subheading">
-                                管理员
-                            </div>
-                            <img class="achievement-image" src="__PUBLICIMG__user07.png" alt="">
-                            <div class="achievement-description">
-                                {$Request.session.username}在
-                                <strong>本周内</strong>发表了
-                                <strong>{$num[2]}</strong>篇文章<br/>上传了
-                                <strong>{$num[1]}</strong>张照片
+                                    <div class="am-form-group">
+                                        <label for="user-weibo" class="am-u-sm-3 am-form-label">附件 <span class="tpl-form-line-small-title">Images</span></label>
+                                        <div class="am-u-sm-9">
+                                            <div class="am-form-group am-form-file">                          
+                                                <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                                <i class="am-icon-cloud-upload"></i> 上传附件</button>
+                                                <input id="doc-form-file" type="file" name="file", onchange="c()">
+                                                <div style="margin-top:15px">
+                                                <img src="" id='show' style="width: 200px;height: 200px;display:none">
+                                                </div>
+                                            </div>
+                                        <div style="width:200px;height:200px;border:1px solid #ccc;display:none;" id="yl">
+                                        <img src="" style="width:100%;height:100%;">
+                                        </div>
+                                        </div>
+                                    </div>  
+                                    
+                                    <div class="am-form-group">
+                                        <label for="user-intro" class="am-u-sm-3 am-form-label">邮件内容</label>
+                                        <div class="am-u-sm-9">
+                                            <textarea id="demo" class="" rows="10" id="user-intro"  name="Content" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="am-form-group">
+                                        <div class="am-u-sm-9 am-u-sm-push-3">
+                                            <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
-                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 widget-margin-bottom-lg">
-
-                        <div class="widget am-cf widget-body-lg">
-
-                            <div class="widget-body  am-fr">
-                                <div class="am-scrollable-horizontal ">
-                                    <table width="100%" class="am-table am-table-compact am-text-nowrap tpl-table-black " id="example-r">
-                                        <thead>
-                                            <tr>
-                                                <th>文章标题</th>
-                                                <th>作者</th>
-                                                <th>时间</th>
-                                                <th>操作</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        	{volist name="new" id="v"}
-                                            <tr class="even gradeC">
-                                                <td>{$v.Title}</td>
-                                                <td>{$v.Writer}</td>
-                                                <td>{$v.Time}</td>
-                                                <td>
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="{:url('/update')}?ID={$v.ID}">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="{:url('/delete')}?ID={$v.ID}" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            {/volist}                                            
-                                            <!-- more data -->
-                                        </tbody>                                       
-                                    </table>
-                                    {$new->render()}
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                </div>                   
             </div>
         </div>
     </div>
@@ -261,7 +211,11 @@
     <script src="__PUBLICJS__amazeui.datatables.min.js"></script>
     <script src="__PUBLICJS__dataTables.responsive.min.js"></script>
     <script src="__PUBLICJS__app.js"></script>
-
+<script type="text/javascript">
+layui.use('layedit', function(){
+var layedit = layui.layedit;
+var abc=layedit.build('demo',{tool: ['strong','italic','underline','del','link','unlink','left', 'center', 'right']});//建立编辑器
+});
+</script>
 </body>
-
 </html>
